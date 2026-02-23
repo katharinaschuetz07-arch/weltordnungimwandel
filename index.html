@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Weltordnung im Wandel v2.3.7</title>
+<title>Weltordnung im Wandel v2.3.8</title>
 <style>
 :root {
     --bg: #0a0f1a;
@@ -27,8 +27,6 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
 }
-
-/* HEADER */
 .header-fixed {
     position: sticky;
     top: 0;
@@ -42,8 +40,6 @@ body {
 }
 .main-title { font-family: var(--font-serif); font-size: clamp(18px,4vw,24px); letter-spacing: 2px; color: var(--accent); margin:0; text-transform: uppercase;}
 .version-tag { font-size: 10px; color: var(--text-dim); opacity: 0.6; margin-top:2px; letter-spacing:2px;}
-
-/* CONTENT WRAPPER */
 .content-wrapper {
     padding: 10px 10px;
     display: flex;
@@ -54,8 +50,6 @@ body {
     max-width: 380px;
     margin: 0 auto;
 }
-
-/* BUTTON GRID 2x4 */
 .button-grid {
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -79,8 +73,6 @@ body {
 }
 .menu-btn:hover {border-color: var(--accent); transform: translateY(-1px);}
 .menu-btn:active {background: var(--accent-soft);}
-
-/* LERNKARTE */
 #card-overlay {
     display: flex;
     flex-direction: column;
@@ -109,17 +101,18 @@ body {
     font-size: 10px; color: var(--accent); font-weight: bold;
 }
 .card-counter { position: absolute; top: 8px; right: 12px; font-size: 12px; color: var(--accent); opacity: 0.7; }
-
 .info-card h3 { margin: 20px 0 10px 0; font-family: var(--font-serif); color: var(--accent); font-size: clamp(16px,3vw,20px);}
 .info-card p { margin:0; line-height:1.6; font-size: clamp(14px,2vw,16px); }
 .info-card .hint { font-size:10px; color: var(--accent); margin-top:10px; opacity:0.5; letter-spacing:1px; }
-
+.button-row-top {
+    display:flex; justify-content:space-between; gap:8px; width:100%; margin-bottom:8px;
+}
 .nav-controls {
     display:flex;
     justify-content: space-between;
     gap: 8px;
     width:100%;
-    margin-top:12px;
+    margin-top:8px;
 }
 .nav-btn {
     flex:1;
@@ -137,33 +130,10 @@ body {
 }
 .nav-btn:hover { transform: translateY(-1px);}
 .btn-read { border-color: var(--accent); color: var(--accent); }
-
-.extra-controls {
-    display:flex;
-    justify-content:space-between;
-    gap:12px;
-    width:100%;
-    margin-top:12px;
-}
-.extra-btn {
-    flex:1;
-    padding:10px 0;
-    background: var(--card-bg);
-    border:1px solid var(--accent-soft);
-    color: var(--accent);
-    border-radius:25px;
-    font-size:12px;
-    font-weight:bold;
-    cursor:pointer;
-    text-align:center;
-    transition: transform 0.2s, background 0.2s;
-}
-.extra-btn:hover { transform: translateY(-1px); }
-
 .yt-button {
     display:block;
     width:100%;
-    margin-top: 14px;
+    margin-top: 12px;
     padding:12px 0;
     background:#cc0000;
     color:white;
@@ -176,7 +146,6 @@ body {
     transition: opacity 0.2s;
 }
 .yt-button:hover {opacity:0.9;}
-
 footer {
     padding:12px 10px;
     text-align:center;
@@ -193,7 +162,7 @@ footer {
 <div class="header-fixed">
     <p class="main-title">Weltordnung im Wandel</p>
     <p class="version-tag">LEITFADEN ZUR ANALYSE GLOBALER ZYKLEN</p>
-    <p class="version-tag">VERSION 2.3.7</p>
+    <p class="version-tag">VERSION 2.3.8</p>
 </div>
 
 <div class="content-wrapper">
@@ -209,7 +178,7 @@ footer {
     </div>
 
     <div id="card-overlay">
-        <div class="info-card" onclick="cardAction()">
+        <div class="info-card" onclick="nextCardAndSpeak()">
             <div class="rubrik-label" id="rubrik-label"></div>
             <div id="card-counter" class="card-counter"></div>
             <h3 id="overlay-title"></h3>
@@ -217,15 +186,15 @@ footer {
             <p class="hint">• TIPPEN ZUM VORLESEN & WEITER •</p>
         </div>
 
-        <div class="nav-controls">
-            <button class="nav-btn" onclick="prevCard()">Zurück</button>
-            <button class="nav-btn btn-read" onclick="cardAction()">Vorlesen</button>
-            <button class="nav-btn" onclick="nextCard()">Weiter</button>
+        <div class="button-row-top">
+            <button class="nav-btn" onclick="openStartCards()">Start</button>
+            <button class="nav-btn" onclick="openAuthorCard()">Ray Dalio</button>
         </div>
 
-        <div class="extra-controls">
-            <button class="extra-btn" onclick="openStartCards()">Start</button>
-            <button class="extra-btn" onclick="openAuthorCard()">Ray Dalio</button>
+        <div class="nav-controls">
+            <button class="nav-btn" onclick="prevCard()">Zurück</button>
+            <button class="nav-btn btn-read" onclick="speakCurrentCard()">Vorlesen</button>
+            <button class="nav-btn" onclick="nextCardAndSpeak()">Weiter</button>
         </div>
 
         <a href="https://www.youtube.com/results?search_query=ray+dalio+weltordnung+deutsch" target="_blank" class="yt-button">🎬 VIDEO ANALYSE STARTEN</a>
@@ -324,49 +293,60 @@ const authorCard = [
 
 // STATE
 let currentTopic=0, currentCard=0;
-let inSpecialCards=false, specialCards=[];
+let inSpecialCards=true, specialCards=startCards; // Start-Karten beim App-Start
 
-// FUNKTIONEN
-function openTopic(id){
-  inSpecialCards=false; currentTopic=id; currentCard=0;
-  showOverlay(); updateCard(); speakCurrentCard();
-}
-function showOverlay(){ document.getElementById('card-overlay').style.display='flex'; }
-function closeOverlay(){ document.getElementById('card-overlay').style.display='none'; window.speechSynthesis.cancel(); }
 function updateCard(){
-  let text = inSpecialCards?specialCards[currentCard]:topics[currentTopic].cards[currentCard];
-  let rubrik = inSpecialCards?"INFO":topics[currentTopic].name;
-  document.getElementById('overlay-title').innerText = inSpecialCards?"":"Lektion "+(currentCard+1);
-  document.getElementById('overlay-content').innerText = text;
-  document.getElementById('rubrik-label').innerText = rubrik;
-  document.getElementById('card-counter').innerText = (currentCard+1)+"/"+(inSpecialCards?specialCards.length:topics[currentTopic].cards.length);
+    let text=inSpecialCards?specialCards[currentCard]:topics[currentTopic].cards[currentCard];
+    let rubrik=inSpecialCards?"INFO":topics[currentTopic].name;
+    document.getElementById('overlay-title').innerText=inSpecialCards?"":"Lektion "+(currentCard+1);
+    document.getElementById('overlay-content').innerText=text;
+    document.getElementById('rubrik-label').innerText=rubrik;
+    document.getElementById('card-counter').innerText=(currentCard+1)+"/"+(inSpecialCards?specialCards.length:topics[currentTopic].cards.length);
 }
 
-// SPEECH
 function speakCurrentCard(){
-  window.speechSynthesis.cancel();
-  const text=document.getElementById('overlay-content').innerText;
-  const msg=new SpeechSynthesisUtterance(text);
-  msg.lang='de-DE';
-  window.speechSynthesis.speak(msg);
+    window.speechSynthesis.cancel();
+    const text=document.getElementById('overlay-content').innerText;
+    const msg=new SpeechSynthesisUtterance(text);
+    msg.lang='de-DE';
+    window.speechSynthesis.speak(msg);
 }
 
-function cardAction(){ speakCurrentCard(); }
-
-function nextCard(){
-  let limit=inSpecialCards?specialCards.length:topics[currentTopic].cards.length;
-  currentCard=(currentCard+1)%limit;
-  updateCard(); speakCurrentCard();
+function nextCardAndSpeak(){
+    let limit=inSpecialCards?specialCards.length:topics[currentTopic].cards.length;
+    currentCard=(currentCard+1)%limit;
+    updateCard();
+    speakCurrentCard();
 }
 
 function prevCard(){
-  let limit=inSpecialCards?specialCards.length:topics[currentTopic].cards.length;
-  currentCard=(currentCard-1+limit)%limit;
-  updateCard(); speakCurrentCard();
+    let limit=inSpecialCards?specialCards.length:topics[currentTopic].cards.length;
+    currentCard=(currentCard-1+limit)%limit;
+    updateCard();
+    speakCurrentCard();
 }
 
+function openTopic(id){
+    inSpecialCards=false;
+    currentTopic=id; currentCard=0;
+    showOverlay();
+    updateCard();
+    speakCurrentCard();
+}
+
+function showOverlay(){ document.getElementById('card-overlay').style.display='flex'; }
+function closeOverlay(){ document.getElementById('card-overlay').style.display='none'; window.speechSynthesis.cancel(); }
+
 function openStartCards(){ inSpecialCards=true; specialCards=startCards; currentCard=0; updateCard(); showOverlay(); speakCurrentCard();}
-function openAuthorCard(){ inSpecialCards=true; specialCards=authorCard; currentCard=0; updateCard(); showOverlay(); speakCurrentCard();}
+function openAuthorCard(){ inSpecialCards=true; specialCards=authorCard; currentCard=0; updateCard(); showOverlay(); speakCurrentCard(); }
+
+// Beim App-Start direkt erste Start-Karte anzeigen
+window.onload = function(){
+    showOverlay();
+    updateCard();
+    speakCurrentCard();
+}
 </script>
+
 </body>
 </html>
