@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Weltordnung im Wandel v2.3.6</title>
+<title>Weltordnung im Wandel v2.3.7</title>
 <style>
 :root {
     --bg: #0a0f1a;
@@ -16,9 +16,7 @@
     --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --radius: 20px;
 }
-
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
 body {
     font-family: var(--font-sans);
     background-color: var(--bg);
@@ -110,18 +108,12 @@ body {
     position: absolute; top: 8px; left: 12px;
     font-size: 10px; color: var(--accent); font-weight: bold;
 }
-
-/* Counter */
 .card-counter { position: absolute; top: 8px; right: 12px; font-size: 12px; color: var(--accent); opacity: 0.7; }
 
-/* Überschrift & Text */
 .info-card h3 { margin: 20px 0 10px 0; font-family: var(--font-serif); color: var(--accent); font-size: clamp(16px,3vw,20px);}
 .info-card p { margin:0; line-height:1.6; font-size: clamp(14px,2vw,16px); }
-
-/* Hinweis Vorlesen */
 .info-card .hint { font-size:10px; color: var(--accent); margin-top:10px; opacity:0.5; letter-spacing:1px; }
 
-/* NAV BUTTONS */
 .nav-controls {
     display:flex;
     justify-content: space-between;
@@ -146,11 +138,10 @@ body {
 .nav-btn:hover { transform: translateY(-1px);}
 .btn-read { border-color: var(--accent); color: var(--accent); }
 
-/* EXTRA BUTTONS */
 .extra-controls {
     display:flex;
     justify-content:space-between;
-    gap:12px; /* mehr Abstand zu nav-controls */
+    gap:12px;
     width:100%;
     margin-top:12px;
 }
@@ -169,11 +160,10 @@ body {
 }
 .extra-btn:hover { transform: translateY(-1px); }
 
-/* VIDEO BUTTON */
 .yt-button {
     display:block;
     width:100%;
-    margin-top: 14px; /* Abstand extra zu Start/Autor */
+    margin-top: 14px;
     padding:12px 0;
     background:#cc0000;
     color:white;
@@ -188,7 +178,7 @@ body {
 .yt-button:hover {opacity:0.9;}
 
 footer {
-    padding:12px 10px; /* kleiner Abstand Footer */
+    padding:12px 10px;
     text-align:center;
     font-size:10px;
     color:var(--text-dim);
@@ -203,7 +193,7 @@ footer {
 <div class="header-fixed">
     <p class="main-title">Weltordnung im Wandel</p>
     <p class="version-tag">LEITFADEN ZUR ANALYSE GLOBALER ZYKLEN</p>
-    <p class="version-tag">VERSION 2.3.6</p>
+    <p class="version-tag">VERSION 2.3.7</p>
 </div>
 
 <div class="content-wrapper">
@@ -249,7 +239,7 @@ footer {
 </footer>
 
 <script>
-// Alle Rubriken mit 6 Karten
+// Rubriken mit je 6 Karten
 const topics = [
   {name:"Zyklus", cards:[
     "Der 'Große Zyklus' bestimmt seit 500 Jahren den Aufstieg und Fall von Imperien.",
@@ -339,7 +329,7 @@ let inSpecialCards=false, specialCards=[];
 // FUNKTIONEN
 function openTopic(id){
   inSpecialCards=false; currentTopic=id; currentCard=0;
-  showOverlay(); updateCard(); cardAction();
+  showOverlay(); updateCard(); speakCurrentCard();
 }
 function showOverlay(){ document.getElementById('card-overlay').style.display='flex'; }
 function closeOverlay(){ document.getElementById('card-overlay').style.display='none'; window.speechSynthesis.cancel(); }
@@ -351,25 +341,32 @@ function updateCard(){
   document.getElementById('rubrik-label').innerText = rubrik;
   document.getElementById('card-counter').innerText = (currentCard+1)+"/"+(inSpecialCards?specialCards.length:topics[currentTopic].cards.length);
 }
-function cardAction(){
+
+// SPEECH
+function speakCurrentCard(){
   window.speechSynthesis.cancel();
   const text=document.getElementById('overlay-content').innerText;
   const msg=new SpeechSynthesisUtterance(text);
   msg.lang='de-DE';
   window.speechSynthesis.speak(msg);
 }
+
+function cardAction(){ speakCurrentCard(); }
+
 function nextCard(){
   let limit=inSpecialCards?specialCards.length:topics[currentTopic].cards.length;
   currentCard=(currentCard+1)%limit;
-  updateCard(); cardAction();
+  updateCard(); speakCurrentCard();
 }
+
 function prevCard(){
   let limit=inSpecialCards?specialCards.length:topics[currentTopic].cards.length;
   currentCard=(currentCard-1+limit)%limit;
-  updateCard(); cardAction();
+  updateCard(); speakCurrentCard();
 }
-function openStartCards(){ inSpecialCards=true; specialCards=startCards; currentCard=0; updateCard(); showOverlay(); cardAction();}
-function openAuthorCard(){ inSpecialCards=true; specialCards=authorCard; currentCard=0; updateCard(); showOverlay(); cardAction();}
+
+function openStartCards(){ inSpecialCards=true; specialCards=startCards; currentCard=0; updateCard(); showOverlay(); speakCurrentCard();}
+function openAuthorCard(){ inSpecialCards=true; specialCards=authorCard; currentCard=0; updateCard(); showOverlay(); speakCurrentCard();}
 </script>
 </body>
 </html>
