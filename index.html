@@ -104,9 +104,13 @@ body {
 .info-card h3 { margin: 20px 0 10px 0; font-family: var(--font-serif); color: var(--accent); font-size: clamp(16px,3vw,20px);}
 .info-card p { margin:0; line-height:1.6; font-size: clamp(14px,2vw,16px); }
 .info-card .hint { font-size:10px; color: var(--accent); margin-top:10px; opacity:0.5; letter-spacing:1px; }
+
 .button-row-top {
-    display:flex; justify-content:space-between; gap:8px; width:100%; margin-bottom:8px;
+    display:flex; justify-content:space-between; gap:8px; width:100%; 
+    margin: 12px 0; /* größerer Abstand nach unten */
 }
+.button-row-top .nav-btn { color: var(--accent); border:1px solid var(--accent); }
+
 .nav-controls {
     display:flex;
     justify-content: space-between;
@@ -114,22 +118,10 @@ body {
     width:100%;
     margin-top:8px;
 }
-.nav-btn {
-    flex:1;
-    padding:10px 0;
-    background: var(--card-bg);
-    border:1px solid var(--accent-soft);
-    color: var(--text-bright);
-    border-radius:25px;
-    font-size:12px;
-    font-weight:bold;
-    text-transform: uppercase;
-    cursor:pointer;
-    text-align:center;
-    transition: transform 0.2s, background 0.2s;
-}
-.nav-btn:hover { transform: translateY(-1px);}
-.btn-read { border-color: var(--accent); color: var(--accent); }
+.nav-controls .nav-btn { flex:1; padding:10px 0; border-radius:25px; font-size:12px; font-weight:bold; text-transform: uppercase; cursor:pointer; text-align:center; transition: transform 0.2s, background 0.2s; }
+.nav-controls .btn-read { border-color: var(--accent); color: var(--accent); }
+.nav-controls .nav-btn:not(.btn-read) { border-color: var(--accent); color: var(--accent); } /* Zurück & Weiter gelb umranden */
+
 .yt-button {
     display:block;
     width:100%;
@@ -208,92 +200,21 @@ footer {
 </footer>
 
 <script>
-// Rubriken mit je 6 Karten
+// Rubriken & Karten
 const topics = [
-  {name:"Zyklus", cards:[
-    "Der 'Große Zyklus' bestimmt seit 500 Jahren den Aufstieg und Fall von Imperien.",
-    "Phase 1: Eine neue Ordnung entsteht meist nach einem großen Konflikt.",
-    "Bildung und Innovation sind die Motoren des frühen Wachstums.",
-    "Die Reservewährung markiert den Zenit der Weltmacht.",
-    "Hohe Schulden und Gelddrucken führen zum schleichenden Verfall.",
-    "Interne Polarisierung schwächt das gesellschaftliche Fundament."
-  ]},
-  {name:"Faktoren", cards:[
-    "Faktor 1: Bildungsqualität.",
-    "Faktor 2: Innovation & Patente.",
-    "Faktor 3: Wettbewerbsfähigkeit.",
-    "Faktor 4: Militärstärke.",
-    "Faktor 5: Welthandelsanteil.",
-    "Faktor 6: Wirtschaftsleistung."
-  ]},
-  {name:"Geld", cards:[
-    "Geld ist ein Speicher für Kaufkraft – verliert es diesen, bricht das System.",
-    "Papierwährungen ohne Deckung haben eine begrenzte Lebensdauer.",
-    "Verschuldungszyklen enden oft in massiver Geldentwertung.",
-    "Gold bleibt der einzige Anker über Jahrhunderte.",
-    "Zentralbanken nutzen Inflation oft als 'versteckte Steuer'.",
-    "Währungsreformen markieren den Beginn eines neuen Finanzzyklus."
-  ]},
-  {name:"Konflikt", cards:[
-    "Wachsende Einkommenskluft treibt den Populismus an.",
-    "Wenn Debatten aggressiv werden, ist der Frieden in Gefahr.",
-    "Kapitalflucht ist ein klassisches Warnsignal für den Kollaps.",
-    "Soziale Unruhen folgen oft auf schwindende Kaufkraft.",
-    "Nationaler Zusammenhalt ist in Krisen wichtiger als Effizienz.",
-    "Krisen führen oft zu einem Ruf nach autoritären Führern."
-  ]},
-  {name:"USA", cards:[
-    "Die USA befinden sich in der späten Phase ihres Zyklus.",
-    "Die massive Staatsverschuldung schränkt den Spielraum ein.",
-    "Politische Spaltung gefährdet die Handlungsfähigkeit.",
-    "Der Dollar wird zunehmend als geopolitische Waffe eingesetzt.",
-    "Veraltete Infrastruktur in den USA ist ein Warnsignal.",
-    "Die Resilienz Amerikas wird nun geprüft."
-  ]},
-  {name:"China", cards:[
-    "Chinas Ziel: Weltmacht bis zum Jahr 2049.",
-    "Vorsprung in KI und grüner Energie.",
-    "Risiko: Die Überalterung der Bevölkerung.",
-    "Die 'Seidenstraße' sichert globale Rohstoffe.",
-    "Staatskapitalismus erlaubt schnelle Investitionen.",
-    "Taiwan ist der gefährlichste Brennpunkt."
-  ]},
-  {name:"Europa", cards:[
-    "Europa steht zwischen den Fronten der USA und China.",
-    "Deutschland leidet unter hohen Energiekosten und Bürokratie.",
-    "Deindustrialisierung gefährdet den Mittelstand.",
-    "Fachkräftemangel bremst die gesamte EU.",
-    "Der Euro benötigt eine tiefere politische Union.",
-    "Technologie-Innovationen finden oft außerhalb Europas statt."
-  ]},
-  {name:"Strategie", cards:[
-    "Akzeptiere die Realität sofort, um reagieren zu können.",
-    "Diversifiziere über Rechtsräume und Währungen.",
-    "Halte Sachwerte als Schutz gegen Inflation.",
-    "Anpassungsfähigkeit ist Ihr wertvollstes Kapital.",
-    "Beobachte die 18 Faktoren laufend.",
-    "Bleibe liquide, wenn andere in Panik geraten."
-  ]}
+  {name:"Zyklus", cards:["Der 'Große Zyklus' ...","Phase 1: ...","Bildung und Innovation ...","Reservewährung ...","Hohe Schulden ...","Interne Polarisierung ..."]},
+  {name:"Faktoren", cards:["Faktor 1 ...","Faktor 2 ...","Faktor 3 ...","Faktor 4 ...","Faktor 5 ...","Faktor 6 ..."]},
+  {name:"Geld", cards:["Geld ist ...","Papierwährungen ...","Verschuldungszyklen ...","Gold ...","Zentralbanken ...","Währungsreformen ..."]},
+  {name:"Konflikt", cards:["Wachsende Einkommenskluft ...","Wenn Debatten ...","Kapitalflucht ...","Soziale Unruhen ...","Nationaler Zusammenhalt ...","Krisen führen ..."]},
+  {name:"USA", cards:["Die USA ...","Die massive ...","Politische Spaltung ...","Dollar als Waffe ...","Veraltete Infrastruktur ...","Resilienz ..."]},
+  {name:"China", cards:["Chinas Ziel ...","Vorsprung in KI ...","Risiko ...","Seidenstraße ...","Staatskapitalismus ...","Taiwan ..."]},
+  {name:"Europa", cards:["Europa ...","Deutschland ...","Deindustrialisierung ...","Fachkräftemangel ...","Euro ...","Technologie ..."]},
+  {name:"Strategie", cards:["Akzeptiere ...","Diversifiziere ...","Halte Sachwerte ...","Anpassungsfähigkeit ...","Beobachte ...","Bleibe liquide ..."]}
 ];
+const startCards = ["Willkommen ...","Hier erfährst du ...","Tippe auf die Rubriken ...","Nutze Vorlesen & Weiter ..."];
+const authorCard = ["Ray Dalio ist Gründer ...","Geboren 1949 ...","Er veröffentlichte ...","Dalio propagiert ...","Er ist weiterhin aktiv ..."];
 
-// Start & Autor
-const startCards = [
-  "Willkommen zur Lern-App 'Weltordnung im Wandel'.",
-  "Hier erfährst du alles über historische Zyklen, Geldsysteme und globale Machtverschiebungen.",
-  "Tippe auf die Rubriken oben, um Inhalte zu öffnen.",
-  "Nutze Vorlesen & Weiter, um die Inhalte automatisch zu hören."
-];
-const authorCard = [
-  "Ray Dalio ist Gründer von Bridgewater Associates, einem der größten Hedgefonds weltweit.",
-  "Geboren 1949, USA. Er arbeitete für diverse Finanzinstitutionen und analysierte globale Märkte.",
-  "Er veröffentlichte Bücher wie 'Principles' und 'Big Debt Crises'.",
-  "Dalio propagiert Transparenz, datenbasierte Entscheidungen und Analyse historischer Zyklen.",
-  "Er ist weiterhin aktiv in Bridgewater, nicht nur Buchautor."
-];
-
-// STATE
-let currentTopic=0, currentCard=0;
-let inSpecialCards=true, specialCards=startCards; // Start-Karten beim App-Start
+let currentTopic=0, currentCard=0, inSpecialCards=true, specialCards=startCards;
 
 function updateCard(){
     let text=inSpecialCards?specialCards[currentCard]:topics[currentTopic].cards[currentCard];
@@ -340,12 +261,7 @@ function closeOverlay(){ document.getElementById('card-overlay').style.display='
 function openStartCards(){ inSpecialCards=true; specialCards=startCards; currentCard=0; updateCard(); showOverlay(); speakCurrentCard();}
 function openAuthorCard(){ inSpecialCards=true; specialCards=authorCard; currentCard=0; updateCard(); showOverlay(); speakCurrentCard(); }
 
-// Beim App-Start direkt erste Start-Karte anzeigen
-window.onload = function(){
-    showOverlay();
-    updateCard();
-    speakCurrentCard();
-}
+window.onload=function(){ showOverlay(); updateCard(); speakCurrentCard(); }
 </script>
 
 </body>
