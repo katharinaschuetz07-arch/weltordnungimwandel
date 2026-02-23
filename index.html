@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Weltordnung im Wandel v2.3.5</title>
+<title>Weltordnung im Wandel v2.3.6</title>
 <style>
 :root {
     --bg: #0a0f1a;
@@ -33,16 +33,17 @@ body {
 /* HEADER */
 .header-fixed {
     position: sticky;
-    top: 0; width: 100%;
+    top: 0;
+    width: 100%;
     text-align: center;
-    padding: 12px 0 8px 0; /* kleiner Abstand zu Buttons */
-    background: rgba(10, 15, 26, 0.95);
+    padding: 12px 0 6px 0;
+    background: rgba(10,15,26,0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--accent-soft);
     z-index: 5000;
 }
-.main-title { font-family: var(--font-serif); font-size: clamp(18px, 4vw, 24px); letter-spacing: 2px; color: var(--accent); margin: 0; text-transform: uppercase; }
-.version-tag { font-size: 10px; color: var(--text-dim); opacity: 0.6; margin-top: 2px; letter-spacing: 2px; }
+.main-title { font-family: var(--font-serif); font-size: clamp(18px,4vw,24px); letter-spacing: 2px; color: var(--accent); margin:0; text-transform: uppercase;}
+.version-tag { font-size: 10px; color: var(--text-dim); opacity: 0.6; margin-top:2px; letter-spacing:2px;}
 
 /* CONTENT WRAPPER */
 .content-wrapper {
@@ -52,18 +53,18 @@ body {
     align-items: center;
     flex-grow: 1;
     width: 100%;
-    max-width: 380px; /* leicht reduziert für 7,9 Zoll */
+    max-width: 380px;
     margin: 0 auto;
 }
 
 /* BUTTON GRID 2x4 */
 .button-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(2, auto);
     gap: 10px;
     width: 100%;
-    margin-bottom: 10px; /* kleiner Abstand unter Header */
+    margin-bottom: 8px;
 }
 .menu-btn {
     background: var(--card-bg);
@@ -74,12 +75,12 @@ body {
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-    cursor: pointer;
+    box-shadow:0 3px 6px rgba(0,0,0,0.3);
+    cursor:pointer;
     transition: transform 0.2s, border-color 0.2s, background 0.2s;
 }
-.menu-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
-.menu-btn:active { background: var(--accent-soft); }
+.menu-btn:hover {border-color: var(--accent); transform: translateY(-1px);}
+.menu-btn:active {background: var(--accent-soft);}
 
 /* LERNKARTE */
 #card-overlay {
@@ -94,7 +95,7 @@ body {
     background: var(--card-bg);
     padding: 12px;
     width: 100%;
-    min-height: 180px; /* reduziert für kleinere Geräte */
+    min-height: 180px;
     border: 1px solid var(--accent);
     border-radius: var(--radius);
     display: flex;
@@ -105,96 +106,96 @@ body {
     box-shadow: 0 10px 25px rgba(0,0,0,0.7);
     text-align: center;
 }
-.rubrik-label { 
-    position: absolute; top: 8px; left: 12px; 
-    font-size: 10px; color: var(--accent); font-weight: bold; 
+.rubrik-label {
+    position: absolute; top: 8px; left: 12px;
+    font-size: 10px; color: var(--accent); font-weight: bold;
 }
 
 /* Counter */
 .card-counter { position: absolute; top: 8px; right: 12px; font-size: 12px; color: var(--accent); opacity: 0.7; }
 
 /* Überschrift & Text */
-.info-card h3 { margin: 20px 0 10px 0; font-family: var(--font-serif); color: var(--accent); font-size: clamp(16px, 3vw, 20px); }
-.info-card p { margin: 0; line-height: 1.6; font-size: clamp(14px, 2vw, 16px); }
+.info-card h3 { margin: 20px 0 10px 0; font-family: var(--font-serif); color: var(--accent); font-size: clamp(16px,3vw,20px);}
+.info-card p { margin:0; line-height:1.6; font-size: clamp(14px,2vw,16px); }
 
 /* Hinweis Vorlesen */
-.info-card .hint { font-size: 10px; color: var(--accent); margin-top: 10px; opacity: 0.5; letter-spacing: 1px; }
+.info-card .hint { font-size:10px; color: var(--accent); margin-top:10px; opacity:0.5; letter-spacing:1px; }
 
 /* NAV BUTTONS */
-.nav-controls { 
-    display: flex;
+.nav-controls {
+    display:flex;
     justify-content: space-between;
     gap: 8px;
-    width: 100%;
-    margin-top: 8px;
+    width:100%;
+    margin-top:12px;
 }
 .nav-btn {
-    flex: 1;
-    padding: 10px 0;
+    flex:1;
+    padding:10px 0;
     background: var(--card-bg);
-    border: 1px solid var(--accent-soft);
+    border:1px solid var(--accent-soft);
     color: var(--text-bright);
-    border-radius: 25px;
-    font-size: 12px;
-    font-weight: bold;
+    border-radius:25px;
+    font-size:12px;
+    font-weight:bold;
     text-transform: uppercase;
-    cursor: pointer;
-    text-align: center;
+    cursor:pointer;
+    text-align:center;
     transition: transform 0.2s, background 0.2s;
 }
-.nav-btn:hover { transform: translateY(-1px); }
+.nav-btn:hover { transform: translateY(-1px);}
 .btn-read { border-color: var(--accent); color: var(--accent); }
 
 /* EXTRA BUTTONS */
 .extra-controls {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    width: 100%;
-    margin-top: 6px;
+    display:flex;
+    justify-content:space-between;
+    gap:12px; /* mehr Abstand zu nav-controls */
+    width:100%;
+    margin-top:12px;
 }
 .extra-btn {
-    flex: 1;
-    padding: 10px 0;
+    flex:1;
+    padding:10px 0;
     background: var(--card-bg);
-    border: 1px solid var(--accent-soft);
+    border:1px solid var(--accent-soft);
     color: var(--accent);
-    border-radius: 25px;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    text-align: center;
+    border-radius:25px;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
+    text-align:center;
     transition: transform 0.2s, background 0.2s;
 }
 .extra-btn:hover { transform: translateY(-1px); }
 
 /* VIDEO BUTTON */
 .yt-button {
-    display: block;
-    width: 100%;
-    margin-top: 10px; /* Abstand Footer–Video kleiner */
-    padding: 12px 0;
-    background: #cc0000;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    font-size: 12px;
-    font-weight: bold;
+    display:block;
+    width:100%;
+    margin-top: 14px; /* Abstand extra zu Start/Autor */
+    padding:12px 0;
+    background:#cc0000;
+    color:white;
+    text-decoration:none;
+    border-radius:25px;
+    font-size:12px;
+    font-weight:bold;
     text-transform: uppercase;
-    text-align: center;
+    text-align:center;
     transition: opacity 0.2s;
 }
-.yt-button:hover { opacity: 0.9; }
+.yt-button:hover {opacity:0.9;}
 
-footer { 
-    padding: 20px 10px; 
-    text-align: center; 
-    font-size: 10px; 
-    color: var(--text-dim); 
-    line-height: 1.6;
-    opacity: 0.7;
+footer {
+    padding:12px 10px; /* kleiner Abstand Footer */
+    text-align:center;
+    font-size:10px;
+    color:var(--text-dim);
+    line-height:1.6;
+    opacity:0.7;
 }
-.footer-brand { color: var(--accent); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 6px; }
+.footer-brand { color: var(--accent); font-weight:bold; text-transform: uppercase; display:block; margin-bottom:6px;}
 </style>
 </head>
 <body>
@@ -202,11 +203,10 @@ footer {
 <div class="header-fixed">
     <p class="main-title">Weltordnung im Wandel</p>
     <p class="version-tag">LEITFADEN ZUR ANALYSE GLOBALER ZYKLEN</p>
-    <p class="version-tag">VERSION 2.3.5</p>
+    <p class="version-tag">VERSION 2.3.6</p>
 </div>
 
 <div class="content-wrapper">
-    <!-- 8 Buttons 2x4 -->
     <div class="button-grid">
         <button class="menu-btn" onclick="openTopic(0)">Zyklus</button>
         <button class="menu-btn" onclick="openTopic(1)">Faktoren</button>
@@ -218,7 +218,6 @@ footer {
         <button class="menu-btn" onclick="openTopic(7)">Strategie</button>
     </div>
 
-    <!-- Lernkarte Overlay -->
     <div id="card-overlay">
         <div class="info-card" onclick="cardAction()">
             <div class="rubrik-label" id="rubrik-label"></div>
@@ -228,20 +227,17 @@ footer {
             <p class="hint">• TIPPEN ZUM VORLESEN & WEITER •</p>
         </div>
 
-        <!-- Navigation unter Karte -->
         <div class="nav-controls">
             <button class="nav-btn" onclick="prevCard()">Zurück</button>
             <button class="nav-btn btn-read" onclick="cardAction()">Vorlesen</button>
-            <button class="nav-btn" onclick="nextCardAndRead()">Weiter</button>
+            <button class="nav-btn" onclick="nextCard()">Weiter</button>
         </div>
 
-        <!-- Extra Buttons: Start / Autor -->
         <div class="extra-controls">
             <button class="extra-btn" onclick="openStartCards()">Start</button>
             <button class="extra-btn" onclick="openAuthorCard()">Ray Dalio</button>
         </div>
 
-        <!-- Video Button -->
         <a href="https://www.youtube.com/results?search_query=ray+dalio+weltordnung+deutsch" target="_blank" class="yt-button">🎬 VIDEO ANALYSE STARTEN</a>
     </div>
 </div>
@@ -253,7 +249,7 @@ footer {
 </footer>
 
 <script>
-// Lerninhalte
+// Alle Rubriken mit 6 Karten
 const topics = [
   {name:"Zyklus", cards:[
     "Der 'Große Zyklus' bestimmt seit 500 Jahren den Aufstieg und Fall von Imperien.",
@@ -286,18 +282,48 @@ const topics = [
     "Soziale Unruhen folgen oft auf schwindende Kaufkraft.",
     "Nationaler Zusammenhalt ist in Krisen wichtiger als Effizienz.",
     "Krisen führen oft zu einem Ruf nach autoritären Führern."
+  ]},
+  {name:"USA", cards:[
+    "Die USA befinden sich in der späten Phase ihres Zyklus.",
+    "Die massive Staatsverschuldung schränkt den Spielraum ein.",
+    "Politische Spaltung gefährdet die Handlungsfähigkeit.",
+    "Der Dollar wird zunehmend als geopolitische Waffe eingesetzt.",
+    "Veraltete Infrastruktur in den USA ist ein Warnsignal.",
+    "Die Resilienz Amerikas wird nun geprüft."
+  ]},
+  {name:"China", cards:[
+    "Chinas Ziel: Weltmacht bis zum Jahr 2049.",
+    "Vorsprung in KI und grüner Energie.",
+    "Risiko: Die Überalterung der Bevölkerung.",
+    "Die 'Seidenstraße' sichert globale Rohstoffe.",
+    "Staatskapitalismus erlaubt schnelle Investitionen.",
+    "Taiwan ist der gefährlichste Brennpunkt."
+  ]},
+  {name:"Europa", cards:[
+    "Europa steht zwischen den Fronten der USA und China.",
+    "Deutschland leidet unter hohen Energiekosten und Bürokratie.",
+    "Deindustrialisierung gefährdet den Mittelstand.",
+    "Fachkräftemangel bremst die gesamte EU.",
+    "Der Euro benötigt eine tiefere politische Union.",
+    "Technologie-Innovationen finden oft außerhalb Europas statt."
+  ]},
+  {name:"Strategie", cards:[
+    "Akzeptiere die Realität sofort, um reagieren zu können.",
+    "Diversifiziere über Rechtsräume und Währungen.",
+    "Halte Sachwerte als Schutz gegen Inflation.",
+    "Anpassungsfähigkeit ist Ihr wertvollstes Kapital.",
+    "Beobachte die 18 Faktoren laufend.",
+    "Bleibe liquide, wenn andere in Panik geraten."
   ]}
 ];
 
-// Start Button Inhalte (4 Karten)
+// Start & Autor
 const startCards = [
   "Willkommen zur Lern-App 'Weltordnung im Wandel'.",
   "Hier erfährst du alles über historische Zyklen, Geldsysteme und globale Machtverschiebungen.",
   "Tippe auf die Rubriken oben, um Inhalte zu öffnen.",
   "Nutze Vorlesen & Weiter, um die Inhalte automatisch zu hören."
 ];
-
-// Autor Card
 const authorCard = [
   "Ray Dalio ist Gründer von Bridgewater Associates, einem der größten Hedgefonds weltweit.",
   "Geboren 1949, USA. Er arbeitete für diverse Finanzinstitutionen und analysierte globale Märkte.",
@@ -306,58 +332,44 @@ const authorCard = [
   "Er ist weiterhin aktiv in Bridgewater, nicht nur Buchautor."
 ];
 
-// State
+// STATE
 let currentTopic=0, currentCard=0;
 let inSpecialCards=false, specialCards=[];
 
-// Funktionen
+// FUNKTIONEN
 function openTopic(id){
-  inSpecialCards=false;
-  currentTopic=id; currentCard=0;
-  updateCard();
-  showOverlay();
-  cardAction();
+  inSpecialCards=false; currentTopic=id; currentCard=0;
+  showOverlay(); updateCard(); cardAction();
 }
-
+function showOverlay(){ document.getElementById('card-overlay').style.display='flex'; }
+function closeOverlay(){ document.getElementById('card-overlay').style.display='none'; window.speechSynthesis.cancel(); }
 function updateCard(){
-  let text;
-  let rubrik;
-  if(inSpecialCards){
-    text = specialCards[currentCard];
-    rubrik = "INFO";
-  } else {
-    text = topics[currentTopic].cards[currentCard];
-    rubrik = topics[currentTopic].name;
-  }
+  let text = inSpecialCards?specialCards[currentCard]:topics[currentTopic].cards[currentCard];
+  let rubrik = inSpecialCards?"INFO":topics[currentTopic].name;
   document.getElementById('overlay-title').innerText = inSpecialCards?"":"Lektion "+(currentCard+1);
   document.getElementById('overlay-content').innerText = text;
   document.getElementById('rubrik-label').innerText = rubrik;
   document.getElementById('card-counter').innerText = (currentCard+1)+"/"+(inSpecialCards?specialCards.length:topics[currentTopic].cards.length);
 }
-
-function showOverlay(){ document.getElementById('card-overlay').style.display='flex'; }
-function closeOverlay(){ document.getElementById('card-overlay').style.display='none'; window.speechSynthesis.cancel(); }
-
 function cardAction(){
   window.speechSynthesis.cancel();
-  const text = document.getElementById('overlay-content').innerText;
-  const msg = new SpeechSynthesisUtterance(text);
+  const text=document.getElementById('overlay-content').innerText;
+  const msg=new SpeechSynthesisUtterance(text);
   msg.lang='de-DE';
   window.speechSynthesis.speak(msg);
 }
-
-function nextCardAndRead(){
-  let limit = inSpecialCards?specialCards.length:topics[currentTopic].cards.length;
-  if(currentCard<limit-1){ currentCard++; updateCard(); cardAction(); } 
-  else closeOverlay();
+function nextCard(){
+  let limit=inSpecialCards?specialCards.length:topics[currentTopic].cards.length;
+  currentCard=(currentCard+1)%limit;
+  updateCard(); cardAction();
 }
-function prevCard(){ if(currentCard>0){ currentCard--; updateCard(); cardAction(); } }
-
-// Start Cards
-function openStartCards(){ inSpecialCards=true; specialCards=startCards; currentCard=0; updateCard(); showOverlay(); cardAction(); }
-
-// Autor Card
-function openAuthorCard(){ inSpecialCards=true; specialCards=authorCard; currentCard=0; updateCard(); showOverlay(); cardAction(); }
+function prevCard(){
+  let limit=inSpecialCards?specialCards.length:topics[currentTopic].cards.length;
+  currentCard=(currentCard-1+limit)%limit;
+  updateCard(); cardAction();
+}
+function openStartCards(){ inSpecialCards=true; specialCards=startCards; currentCard=0; updateCard(); showOverlay(); cardAction();}
+function openAuthorCard(){ inSpecialCards=true; specialCards=authorCard; currentCard=0; updateCard(); showOverlay(); cardAction();}
 </script>
 </body>
 </html>
