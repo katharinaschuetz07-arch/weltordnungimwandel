@@ -3,202 +3,221 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Weltordnung im Wandel v2.3.9</title>
+<title>Weltordnung im Wandel v2.3.10</title>
 
 <style>
-:root {
-    --bg: #0a0f1a;
-    --card-bg: #141c2d;
-    --accent: #d4af37;
-    --accent-soft: rgba(212,175,55,0.15);
-    --text-bright: #f5f5f0;
-    --text-dim: #9aa3b2;
-    --radius: 22px;
+:root{
+ --bg:#0a0f1a;
+ --card-bg:#141c2d;
+ --accent:#e6c65c;
+ --accent-strong:#f2d777;
+ --text:#f5f5f0;
+ --radius:24px;
 }
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 
 body{
-    margin:0;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-    background:var(--bg);
-    color:var(--text-bright);
-    display:flex;
-    flex-direction:column;
-    min-height:100vh;
-    overflow-x:hidden;
+ margin:0;
+ background:var(--bg);
+ color:var(--text);
+ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+ display:flex;
+ flex-direction:column;
+ min-height:100vh;
 }
 
+/* HEADER */
+
 .header-fixed{
-    position:sticky;
-    top:0;
-    text-align:center;
-    padding:12px 0 6px 0;
-    background:rgba(10,15,26,0.95);
-    border-bottom:1px solid var(--accent-soft);
-    z-index:1000;
+ position:sticky;
+ top:0;
+ text-align:center;
+ padding:14px 0 8px 0;
+ background:rgba(10,15,26,0.95);
+ border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
 .main-title{
-    margin:0;
-    color:var(--accent);
-    letter-spacing:2px;
-    font-size:20px;
-    text-transform:uppercase;
+ margin:0;
+ font-size:22px;
+ font-weight:800;
+ letter-spacing:2px;
+ color:var(--accent-strong);
+ text-transform:uppercase;
 }
 
 .version-tag{
-    font-size:10px;
-    color:var(--text-dim);
-    letter-spacing:2px;
-    margin-top:3px;
+ font-size:10px;
+ opacity:0.5;
+ margin-top:4px;
 }
+
+/* LAYOUT */
 
 .content-wrapper{
-    width:100%;
-    max-width:380px;
-    margin:0 auto;
-    padding:10px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+ max-width:390px;
+ margin:0 auto;
+ padding:10px;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
 }
 
+/* TOP GRID */
+
 .button-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    width:100%;
-    margin-bottom:8px;
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:8px;
+ width:100%;
+ margin-bottom:10px;
 }
 
 .menu-btn{
-    background:var(--card-bg);
-    border:1px solid var(--accent-soft);
-    color:var(--accent);
-    padding:10px 5px;
-    border-radius:25px;
-    font-size:12px;
-    font-weight:bold;
-    text-transform:uppercase;
-    cursor:pointer;
+ background:var(--card-bg);
+ border:1px solid rgba(255,255,255,0.08);
+ color:var(--accent);
+ padding:10px 5px;
+ border-radius:28px;
+ font-size:12px;
+ font-weight:bold;
+ text-transform:uppercase;
+ cursor:pointer;
 }
 
-.menu-btn:hover{
-    border-color:var(--accent);
-}
+/* CARD */
 
 .info-card{
-    width:100%;
-    min-height:160px;
-    background:var(--card-bg);
-    border:1px solid var(--accent);
-    border-radius:var(--radius);
-    padding:12px;
-    margin-bottom:10px;
-    position:relative;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    cursor:pointer;
+ width:100%;
+ min-height:200px;
+ background:var(--card-bg);
+ border:1px solid var(--accent);
+ border-radius:var(--radius);
+ padding:16px 14px 30px 14px;
+ margin-bottom:12px;
+ text-align:center;
+ position:relative;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ cursor:pointer;
 }
 
 .rubrik-label{
-    position:absolute;
-    top:8px;
-    left:12px;
-    font-size:10px;
-    color:var(--accent);
-    font-weight:bold;
+ position:absolute;
+ top:10px;
+ left:14px;
+ font-size:10px;
+ color:var(--accent);
+ font-weight:bold;
 }
 
 .card-counter{
-    position:absolute;
-    top:8px;
-    right:12px;
-    font-size:11px;
-    color:var(--accent);
+ position:absolute;
+ top:10px;
+ right:14px;
+ font-size:10px;
+ color:var(--accent);
 }
 
-.info-card h3{
-    margin:15px 0 10px 0;
-    color:var(--accent);
-    font-size:16px;
+.card-title{
+ font-size:16px;
+ font-weight:700;
+ color:var(--accent-strong);
+ margin-bottom:10px;
 }
 
-.info-card p{
-    margin:0;
-    font-size:14px;
-    line-height:1.5;
+.card-text{
+ font-size:14px;
+ line-height:1.6;
 }
 
 .hint{
-    font-size:9px;
-    margin-top:8px;
-    color:var(--accent);
-    opacity:0.5;
+ position:absolute;
+ bottom:8px;
+ left:0;
+ right:0;
+ font-size:9px;
+ opacity:0.5;
+ color:var(--accent);
 }
+
+/* START & AUTHOR */
 
 .special-buttons{
-    display:flex;
-    gap:8px;
-    width:100%;
-    margin:6px 0 10px 0;
+ width:100%;
+ display:flex;
+ flex-direction:column;
+ gap:8px;
+ margin-bottom:12px;
 }
 
+.special-buttons .menu-btn{
+ width:100%;
+ padding:12px 0;
+ font-size:13px;
+}
+
+/* NAVIGATION */
+
 .nav-controls{
-    display:flex;
-    gap:8px;
-    width:100%;
-    margin-bottom:10px;
+ display:flex;
+ gap:8px;
+ width:100%;
+ margin-bottom:10px;
 }
 
 .nav-btn{
-    flex:1;
-    padding:10px 0;
-    background:var(--card-bg);
-    border:1px solid var(--accent);
-    color:var(--accent);
-    border-radius:25px;
-    font-size:12px;
-    font-weight:bold;
-    text-transform:uppercase;
-    cursor:pointer;
+ flex:1;
+ padding:10px 0;
+ background:var(--card-bg);
+ border:1px solid var(--accent);
+ color:var(--accent);
+ border-radius:25px;
+ font-size:12px;
+ font-weight:bold;
+ text-transform:uppercase;
+ cursor:pointer;
 }
+
+/* VIDEO */
 
 .yt-button{
-    width:100%;
-    padding:10px 0;
-    background:#cc0000;
-    border-radius:25px;
-    text-align:center;
-    color:white;
-    text-decoration:none;
-    font-size:12px;
-    margin-bottom:6px;
+ width:100%;
+ padding:10px 0;
+ background:#cc0000;
+ border-radius:25px;
+ text-align:center;
+ color:white;
+ text-decoration:none;
+ font-size:12px;
+ margin-bottom:8px;
 }
 
+/* FOOTER */
+
 footer{
-    text-align:center;
-    font-size:10px;
-    color:var(--text-dim);
-    padding:10px;
+ text-align:center;
+ font-size:10px;
+ opacity:0.6;
+ padding:10px;
 }
 
 .footer-brand{
-    display:block;
-    color:var(--accent);
-    font-weight:bold;
-    margin-bottom:5px;
+ display:block;
+ color:var(--accent);
+ font-weight:bold;
+ margin-bottom:4px;
 }
 </style>
 </head>
+
 <body>
 
 <div class="header-fixed">
 <p class="main-title">Weltordnung im Wandel</p>
-<p class="version-tag">VERSION 2.3.9</p>
+<p class="version-tag">VERSION 2.3.10</p>
 </div>
 
 <div class="content-wrapper">
@@ -217,9 +236,9 @@ footer{
 <div class="info-card" onclick="nextCardAndSpeak()">
 <div class="rubrik-label" id="rubrik-label"></div>
 <div class="card-counter" id="card-counter"></div>
-<h3 id="overlay-title"></h3>
-<p id="overlay-content"></p>
-<p class="hint">• TIPPEN FÜR NÄCHSTE KARTE •</p>
+<div class="card-title" id="card-title"></div>
+<div class="card-text" id="overlay-content"></div>
+<div class="hint">Tippen für nächste Karte</div>
 </div>
 
 <div class="special-buttons">
@@ -243,101 +262,33 @@ footer{
 </footer>
 
 <script>
-
-// vollständige Inhalte wieder integriert
-const topics = [
+const topics=[
 {name:"Zyklus",cards:[
-"Der Große Zyklus beschreibt Aufstieg und Fall von Imperien über Jahrhunderte.",
-"Neue Ordnungen entstehen meist nach großen Konflikten.",
-"Bildung und Innovation treiben frühes Wachstum.",
-"Reservewährung bedeutet globale Dominanz.",
-"Steigende Schulden markieren den Wendepunkt.",
-"Interne Konflikte schwächen Imperien am Ende."
+["Zyklus – Grundlagen","Der Große Zyklus beschreibt Aufstieg und Fall von Imperien."],
+["Zyklus – Beginn","Neue Ordnungen entstehen nach großen Konflikten."],
+["Zyklus – Wachstum","Bildung und Innovation treiben Expansion."],
+["Zyklus – Dominanz","Reservewährung bedeutet Macht."],
+["Zyklus – Wendepunkt","Hohe Schulden leiten Abstieg ein."],
+["Zyklus – Ende","Interne Konflikte schwächen Imperien."]
 ]},
-{name:"Faktoren",cards:[
-"Bildungsniveau als Fundament langfristiger Stärke.",
-"Innovation sichert Wettbewerbsvorteile.",
-"Wirtschaftliche Produktivität bestimmt Wohlstand.",
-"Militärstärke schützt geopolitische Interessen.",
-"Handelsanteil zeigt globale Vernetzung.",
-"Finanzzentrum zieht Kapital an."
-]},
-{name:"Geld",cards:[
-"Geld speichert Kaufkraft über Zeit.",
-"Papiergeld verliert langfristig an Wert.",
-"Schuldenzyklen führen zu Inflation.",
-"Gold bleibt historischer Wertspeicher.",
-"Zentralbanken beeinflussen Konjunkturzyklen.",
-"Währungswechsel markieren Systemwechsel."
-]},
-{name:"Konflikt",cards:[
-"Soziale Ungleichheit fördert Spannungen.",
-"Politische Polarisierung destabilisiert Systeme.",
-"Kapitalflucht ist Warnsignal.",
-"Vertrauensverlust schwächt Institutionen.",
-"Unruhen folgen wirtschaftlicher Krise.",
-"Autoritäre Tendenzen nehmen zu."
-]},
-{name:"USA",cards:[
-"Die USA befinden sich im späten Zyklus.",
-"Hohe Staatsverschuldung belastet Zukunft.",
-"Politische Spaltung nimmt zu.",
-"Der Dollar bleibt dominierende Reservewährung.",
-"Technologische Stärke bleibt Wettbewerbsvorteil.",
-"Militärisch weiterhin global führend."
-]},
-{name:"China",cards:[
-"China strebt globale Führungsrolle an.",
-"Starke Investitionen in Technologie.",
-"Demografischer Wandel als Risiko.",
-"Neue Seidenstraße expandiert Einfluss.",
-"Staatskapitalismus ermöglicht Tempo.",
-"Taiwan bleibt geopolitischer Brennpunkt."
-]},
-{name:"Europa",cards:[
-"Europa steht zwischen Großmächten.",
-"Energiepolitik beeinflusst Wettbewerbsfähigkeit.",
-"Demografie belastet Sozialsysteme.",
-"Euro benötigt stärkere Integration.",
-"Innovation wandert teilweise ab.",
-"Industrie steht unter Druck."
-]},
-{name:"Strategie",cards:[
-"Diversifikation schützt Vermögen.",
-"Sachwerte als Inflationsschutz.",
-"Liquidität in Krisen wichtig.",
-"Globale Streuung reduziert Risiko.",
-"Zyklen beobachten statt ignorieren.",
-"Flexibilität ist entscheidend."
-]}
 ];
 
 const startCards=[
-"Willkommen zur Lern-App Weltordnung im Wandel.",
-"Hier analysieren wir globale Machtzyklen.",
-"Nutze die Rubriken zur Navigation.",
-"Klick auf die Karte für die nächste Lektion."
+["Start","Willkommen zur Lern-App Weltordnung im Wandel."],
+["Navigation","Nutze die Rubriken zur Steuerung."],
+["Audio","Klick auf Karte oder Weiter für Vorlesen."],
+["Analyse","Lerne globale Zyklen zu verstehen."]
 ];
 
-const authorCard=[
-"Ray Dalio, geboren 1949 in New York.",
-"Gründer von Bridgewater Associates.",
-"Autor von 'Principles' und weiteren Werken.",
-"Analysiert historische Machtzyklen.",
-"Weiterhin einflussreicher Investor."
-];
-
-let currentTopic=0;
 let currentCard=0;
-let inSpecial=true;
 let specialCards=startCards;
 
 function updateCard(){
-let text=inSpecial?specialCards[currentCard]:topics[currentTopic].cards[currentCard];
-let rubrik=inSpecial?"INFO":topics[currentTopic].name;
-document.getElementById("overlay-content").innerText=text;
-document.getElementById("rubrik-label").innerText=rubrik;
-document.getElementById("card-counter").innerText=(currentCard+1)+"/"+(inSpecial?specialCards.length:topics[currentTopic].cards.length);
+let card=specialCards[currentCard];
+document.getElementById("card-title").innerText=card[0];
+document.getElementById("overlay-content").innerText=card[1];
+document.getElementById("card-counter").innerText=(currentCard+1)+"/"+specialCards.length;
+document.getElementById("rubrik-label").innerText="INFO";
 }
 
 function speakCurrentCard(){
@@ -348,38 +299,19 @@ window.speechSynthesis.speak(msg);
 }
 
 function nextCardAndSpeak(){
-let limit=inSpecial?specialCards.length:topics[currentTopic].cards.length;
-currentCard=(currentCard+1)%limit;
+currentCard=(currentCard+1)%specialCards.length;
 updateCard();
 speakCurrentCard();
 }
 
 function prevCard(){
-let limit=inSpecial?specialCards.length:topics[currentTopic].cards.length;
-currentCard=(currentCard-1+limit)%limit;
-updateCard();
-speakCurrentCard();
-}
-
-function openTopic(id){
-inSpecial=false;
-currentTopic=id;
-currentCard=0;
+currentCard=(currentCard-1+specialCards.length)%specialCards.length;
 updateCard();
 speakCurrentCard();
 }
 
 function openStartCards(){
-inSpecial=true;
 specialCards=startCards;
-currentCard=0;
-updateCard();
-speakCurrentCard();
-}
-
-function openAuthorCard(){
-inSpecial=true;
-specialCards=authorCard;
 currentCard=0;
 updateCard();
 speakCurrentCard();
