@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Weltordnung im Wandel v2.1.2</title>
+<title>Weltordnung im Wandel v2.3.5</title>
 <style>
 :root {
     --bg: #0a0f1a;
@@ -35,46 +35,46 @@ body {
     position: sticky;
     top: 0; width: 100%;
     text-align: center;
-    padding: 20px 0 15px 0;
+    padding: 12px 0 8px 0; /* kleiner Abstand zu Buttons */
     background: rgba(10, 15, 26, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--accent-soft);
     z-index: 5000;
 }
 .main-title { font-family: var(--font-serif); font-size: clamp(18px, 4vw, 24px); letter-spacing: 2px; color: var(--accent); margin: 0; text-transform: uppercase; }
-.version-tag { font-size: 10px; color: var(--text-dim); opacity: 0.6; margin-top: 4px; letter-spacing: 2px; }
+.version-tag { font-size: 10px; color: var(--text-dim); opacity: 0.6; margin-top: 2px; letter-spacing: 2px; }
 
 /* CONTENT WRAPPER */
 .content-wrapper {
-    padding: 20px 15px;
+    padding: 10px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
     width: 100%;
-    max-width: 400px; /* 7,9 Zoll optimiert */
+    max-width: 380px; /* leicht reduziert für 7,9 Zoll */
     margin: 0 auto;
 }
 
-/* BUTTON GRID 8 OBEREN BUTTONS */
+/* BUTTON GRID 2x4 */
 .button-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, auto);
-    gap: 12px;
+    gap: 10px;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* kleiner Abstand unter Header */
 }
 .menu-btn {
     background: var(--card-bg);
     border: 1px solid var(--accent-soft);
     color: var(--accent);
-    padding: 14px 10px;
+    padding: 12px 5px;
     border-radius: 25px;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
     cursor: pointer;
     transition: transform 0.2s, border-color 0.2s, background 0.2s;
 }
@@ -88,13 +88,13 @@ body {
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .info-card {
     background: var(--card-bg);
-    padding: 15px;
+    padding: 12px;
     width: 100%;
-    min-height: 220px; /* reduziert für kleinere Handys */
+    min-height: 180px; /* reduziert für kleinere Geräte */
     border: 1px solid var(--accent);
     border-radius: var(--radius);
     display: flex;
@@ -102,21 +102,35 @@ body {
     justify-content: center;
     cursor: pointer;
     position: relative;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+    text-align: center;
 }
-.card-counter { position: absolute; top: 10px; right: 15px; font-size: 12px; color: var(--accent); opacity: 0.7; }
+.rubrik-label { 
+    position: absolute; top: 8px; left: 12px; 
+    font-size: 10px; color: var(--accent); font-weight: bold; 
+}
 
-/* NAV BUTTONS UNTER DER KARTE */
+/* Counter */
+.card-counter { position: absolute; top: 8px; right: 12px; font-size: 12px; color: var(--accent); opacity: 0.7; }
+
+/* Überschrift & Text */
+.info-card h3 { margin: 20px 0 10px 0; font-family: var(--font-serif); color: var(--accent); font-size: clamp(16px, 3vw, 20px); }
+.info-card p { margin: 0; line-height: 1.6; font-size: clamp(14px, 2vw, 16px); }
+
+/* Hinweis Vorlesen */
+.info-card .hint { font-size: 10px; color: var(--accent); margin-top: 10px; opacity: 0.5; letter-spacing: 1px; }
+
+/* NAV BUTTONS */
 .nav-controls { 
     display: flex;
     justify-content: space-between;
-    gap: 10px;
+    gap: 8px;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 .nav-btn {
     flex: 1;
-    padding: 12px 0;
+    padding: 10px 0;
     background: var(--card-bg);
     border: 1px solid var(--accent-soft);
     color: var(--text-bright);
@@ -126,18 +140,18 @@ body {
     text-transform: uppercase;
     cursor: pointer;
     text-align: center;
-    transition: background 0.2s, transform 0.2s;
+    transition: transform 0.2s, background 0.2s;
 }
 .nav-btn:hover { transform: translateY(-1px); }
 .btn-read { border-color: var(--accent); color: var(--accent); }
 
-/* ZWEITE BUTTONREIHE UNTER NAV */
+/* EXTRA BUTTONS */
 .extra-controls {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
+    gap: 8px;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 6px;
 }
 .extra-btn {
     flex: 1;
@@ -158,8 +172,8 @@ body {
 .yt-button {
     display: block;
     width: 100%;
-    margin-top: 15px;
-    padding: 14px 0;
+    margin-top: 10px; /* Abstand Footer–Video kleiner */
+    padding: 12px 0;
     background: #cc0000;
     color: white;
     text-decoration: none;
@@ -173,7 +187,7 @@ body {
 .yt-button:hover { opacity: 0.9; }
 
 footer { 
-    padding: 25px 15px; 
+    padding: 20px 10px; 
     text-align: center; 
     font-size: 10px; 
     color: var(--text-dim); 
@@ -181,7 +195,6 @@ footer {
     opacity: 0.7;
 }
 .footer-brand { color: var(--accent); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 6px; }
-
 </style>
 </head>
 <body>
@@ -189,7 +202,7 @@ footer {
 <div class="header-fixed">
     <p class="main-title">Weltordnung im Wandel</p>
     <p class="version-tag">LEITFADEN ZUR ANALYSE GLOBALER ZYKLEN</p>
-    <p class="version-tag">VERSION 2.1.2</p>
+    <p class="version-tag">VERSION 2.3.5</p>
 </div>
 
 <div class="content-wrapper">
@@ -205,13 +218,14 @@ footer {
         <button class="menu-btn" onclick="openTopic(7)">Strategie</button>
     </div>
 
-    <!-- Lernkarte + Nav -->
+    <!-- Lernkarte Overlay -->
     <div id="card-overlay">
         <div class="info-card" onclick="cardAction()">
+            <div class="rubrik-label" id="rubrik-label"></div>
             <div id="card-counter" class="card-counter"></div>
-            <h3 id="overlay-title" style="font-family: var(--font-serif); color: var(--accent); margin: 0 0 10px 0; font-size: clamp(16px, 3vw, 22px); border-bottom: 1px solid var(--accent-soft); padding-bottom: 10px;"></h3>
-            <p id="overlay-content" style="line-height: 1.6; font-size: clamp(14px, 2vw, 18px); margin: 0;"></p>
-            <p style="font-size: 10px; color: var(--accent); margin-top: 15px; text-align: center; opacity: 0.5; letter-spacing: 1px;">• TIPPEN ZUM VORLESEN & WEITER •</p>
+            <h3 id="overlay-title"></h3>
+            <p id="overlay-content"></p>
+            <p class="hint">• TIPPEN ZUM VORLESEN & WEITER •</p>
         </div>
 
         <!-- Navigation unter Karte -->
@@ -223,8 +237,8 @@ footer {
 
         <!-- Extra Buttons: Start / Autor -->
         <div class="extra-controls">
-            <button class="extra-btn" onclick="closeOverlay()">Start</button>
-            <button class="extra-btn" onclick="showAuthorInfo()">Ray Dalio</button>
+            <button class="extra-btn" onclick="openStartCards()">Start</button>
+            <button class="extra-btn" onclick="openAuthorCard()">Ray Dalio</button>
         </div>
 
         <!-- Video Button -->
@@ -239,113 +253,111 @@ footer {
 </footer>
 
 <script>
-// Lernkarten-Daten untereinander (editierbar)
+// Lerninhalte
 const topics = [
-  {
-    name: "Zyklus",
-    cards: [
-      "Der 'Große Zyklus' bestimmt seit 500 Jahren den Aufstieg und Fall von Imperien.",
-      "Phase 1: Eine neue Ordnung entsteht meist nach einem großen Konflikt.",
-      "Bildung und Innovation sind die Motoren des frühen Wachstums.",
-      "Die Reservewährung markiert den Zenit der Weltmacht.",
-      "Hohe Schulden und Gelddrucken führen zum schleichenden Verfall.",
-      "Interne Polarisierung schwächt das gesellschaftliche Fundament."
-    ]
-  },
-  {
-    name: "Faktoren",
-    cards: [
-      "Faktor 1: Bildungsqualität.",
-      "Faktor 2: Innovation & Patente.",
-      "Faktor 3: Wettbewerbsfähigkeit.",
-      "Faktor 4: Militärstärke.",
-      "Faktor 5: Welthandelsanteil.",
-      "Faktor 6: Wirtschaftsleistung."
-    ]
-  },
-  {
-    name: "Geld",
-    cards: [
-      "Geld ist ein Speicher für Kaufkraft – verliert es diesen, bricht das System.",
-      "Papierwährungen ohne Deckung haben eine begrenzte Lebensdauer.",
-      "Verschuldungszyklen enden oft in massiver Geldentwertung.",
-      "Gold bleibt der einzige Anker über Jahrhunderte.",
-      "Zentralbanken nutzen Inflation oft als 'versteckte Steuer'.",
-      "Währungsreformen markieren den Beginn eines neuen Finanzzyklus."
-    ]
-  },
-  {
-    name: "Konflikt",
-    cards: [
-      "Wachsende Einkommenskluft treibt den Populismus an.",
-      "Wenn Debatten aggressiv werden, ist der Frieden in Gefahr.",
-      "Kapitalflucht ist ein klassisches Warnsignal für den Kollaps.",
-      "Soziale Unruhen folgen oft auf schwindende Kaufkraft.",
-      "Nationaler Zusammenhalt ist in Krisen wichtiger als Effizienz.",
-      "Krisen führen oft zu einem Ruf nach autoritären Führern."
-    ]
+  {name:"Zyklus", cards:[
+    "Der 'Große Zyklus' bestimmt seit 500 Jahren den Aufstieg und Fall von Imperien.",
+    "Phase 1: Eine neue Ordnung entsteht meist nach einem großen Konflikt.",
+    "Bildung und Innovation sind die Motoren des frühen Wachstums.",
+    "Die Reservewährung markiert den Zenit der Weltmacht.",
+    "Hohe Schulden und Gelddrucken führen zum schleichenden Verfall.",
+    "Interne Polarisierung schwächt das gesellschaftliche Fundament."
+  ]},
+  {name:"Faktoren", cards:[
+    "Faktor 1: Bildungsqualität.",
+    "Faktor 2: Innovation & Patente.",
+    "Faktor 3: Wettbewerbsfähigkeit.",
+    "Faktor 4: Militärstärke.",
+    "Faktor 5: Welthandelsanteil.",
+    "Faktor 6: Wirtschaftsleistung."
+  ]},
+  {name:"Geld", cards:[
+    "Geld ist ein Speicher für Kaufkraft – verliert es diesen, bricht das System.",
+    "Papierwährungen ohne Deckung haben eine begrenzte Lebensdauer.",
+    "Verschuldungszyklen enden oft in massiver Geldentwertung.",
+    "Gold bleibt der einzige Anker über Jahrhunderte.",
+    "Zentralbanken nutzen Inflation oft als 'versteckte Steuer'.",
+    "Währungsreformen markieren den Beginn eines neuen Finanzzyklus."
+  ]},
+  {name:"Konflikt", cards:[
+    "Wachsende Einkommenskluft treibt den Populismus an.",
+    "Wenn Debatten aggressiv werden, ist der Frieden in Gefahr.",
+    "Kapitalflucht ist ein klassisches Warnsignal für den Kollaps.",
+    "Soziale Unruhen folgen oft auf schwindende Kaufkraft.",
+    "Nationaler Zusammenhalt ist in Krisen wichtiger als Effizienz.",
+    "Krisen führen oft zu einem Ruf nach autoritären Führern."
+  ]}
+];
+
+// Start Button Inhalte (4 Karten)
+const startCards = [
+  "Willkommen zur Lern-App 'Weltordnung im Wandel'.",
+  "Hier erfährst du alles über historische Zyklen, Geldsysteme und globale Machtverschiebungen.",
+  "Tippe auf die Rubriken oben, um Inhalte zu öffnen.",
+  "Nutze Vorlesen & Weiter, um die Inhalte automatisch zu hören."
+];
+
+// Autor Card
+const authorCard = [
+  "Ray Dalio ist Gründer von Bridgewater Associates, einem der größten Hedgefonds weltweit.",
+  "Geboren 1949, USA. Er arbeitete für diverse Finanzinstitutionen und analysierte globale Märkte.",
+  "Er veröffentlichte Bücher wie 'Principles' und 'Big Debt Crises'.",
+  "Dalio propagiert Transparenz, datenbasierte Entscheidungen und Analyse historischer Zyklen.",
+  "Er ist weiterhin aktiv in Bridgewater, nicht nur Buchautor."
+];
+
+// State
+let currentTopic=0, currentCard=0;
+let inSpecialCards=false, specialCards=[];
+
+// Funktionen
+function openTopic(id){
+  inSpecialCards=false;
+  currentTopic=id; currentCard=0;
+  updateCard();
+  showOverlay();
+  cardAction();
+}
+
+function updateCard(){
+  let text;
+  let rubrik;
+  if(inSpecialCards){
+    text = specialCards[currentCard];
+    rubrik = "INFO";
+  } else {
+    text = topics[currentTopic].cards[currentCard];
+    rubrik = topics[currentTopic].name;
   }
-];
-
-// Autorinformationen
-const authorInfo = [
-  "Ray Dalio ist Gründer von Bridgewater Associates, einem der größten Hedgefonds der Welt.",
-  "Seine Prinzipien basieren auf der Analyse historischer Zyklen und Finanzsysteme.",
-  "Dalio propagiert Transparenz und datenbasierte Entscheidungsfindung in Wirtschaft und Gesellschaft."
-];
-
-let currentTopic = 0;
-let currentCard = 0;
-
-// Overlay Funktionen
-function openTopic(id) {
-    currentTopic = id;
-    currentCard = 0;
-    document.getElementById('card-overlay').style.display = 'flex';
-    updateCard();
-    cardAction();
+  document.getElementById('overlay-title').innerText = inSpecialCards?"":"Lektion "+(currentCard+1);
+  document.getElementById('overlay-content').innerText = text;
+  document.getElementById('rubrik-label').innerText = rubrik;
+  document.getElementById('card-counter').innerText = (currentCard+1)+"/"+(inSpecialCards?specialCards.length:topics[currentTopic].cards.length);
 }
 
-function updateCard() {
-    const cardText = topics[currentTopic].cards[currentCard];
-    document.getElementById('overlay-title').innerText = `${topics[currentTopic].name} Lektion ${currentCard+1}`;
-    document.getElementById('overlay-content').innerText = cardText;
-    document.getElementById('card-counter').innerText = `${currentCard+1} / ${topics[currentTopic].cards.length}`;
+function showOverlay(){ document.getElementById('card-overlay').style.display='flex'; }
+function closeOverlay(){ document.getElementById('card-overlay').style.display='none'; window.speechSynthesis.cancel(); }
+
+function cardAction(){
+  window.speechSynthesis.cancel();
+  const text = document.getElementById('overlay-content').innerText;
+  const msg = new SpeechSynthesisUtterance(text);
+  msg.lang='de-DE';
+  window.speechSynthesis.speak(msg);
 }
 
-function cardAction() {
-    window.speechSynthesis.cancel();
-    const text = document.getElementById('overlay-content').innerText;
-    const msg = new SpeechSynthesisUtterance(text);
-    msg.lang = 'de-DE';
-    window.speechSynthesis.speak(msg);
+function nextCardAndRead(){
+  let limit = inSpecialCards?specialCards.length:topics[currentTopic].cards.length;
+  if(currentCard<limit-1){ currentCard++; updateCard(); cardAction(); } 
+  else closeOverlay();
 }
+function prevCard(){ if(currentCard>0){ currentCard--; updateCard(); cardAction(); } }
 
-function nextCardAndRead() {
-    if(currentCard < topics[currentTopic].cards.length-1) {
-        currentCard++;
-        updateCard();
-        cardAction();
-    } else closeOverlay();
-}
+// Start Cards
+function openStartCards(){ inSpecialCards=true; specialCards=startCards; currentCard=0; updateCard(); showOverlay(); cardAction(); }
 
-function prevCard() {
-    if(currentCard > 0) {
-        currentCard--;
-        updateCard();
-        cardAction();
-    }
-}
-
-function closeOverlay() {
-    document.getElementById('card-overlay').style.display = 'none';
-    window.speechSynthesis.cancel();
-}
-
-// Autorinfo anzeigen
-function showAuthorInfo() {
-    alert(authorInfo.join("\n\n"));
-}
+// Autor Card
+function openAuthorCard(){ inSpecialCards=true; specialCards=authorCard; currentCard=0; updateCard(); showOverlay(); cardAction(); }
 </script>
 </body>
 </html>
