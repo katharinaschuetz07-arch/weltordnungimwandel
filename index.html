@@ -2,290 +2,400 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weltordnung im Wandel 2.4.1</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Weltordnung im Wandel v2.3.11</title>
 
 <style>
+:root{
+ --bg:#0a0f1a;
+ --card-bg:#141c2d;
+ --accent:#e6c65c;
+ --accent-strong:#f2d777;
+ --text:#f5f5f0;
+ --radius:24px;
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+
 body{
-    margin:0;
-    background:#000;
-    font-family:Arial, sans-serif;
-    color:#fff;
-    max-width:500px;
-    margin:auto;
+ margin:0;
+ background:var(--bg);
+ color:var(--text);
+ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+ display:flex;
+ flex-direction:column;
+ min-height:100vh;
 }
 
-header{
-    text-align:center;
-    padding:18px 10px 10px 10px;
-    font-family:'Oswald', sans-serif;
-    font-size:26px;
-    font-weight:600;
-    color:#ffd700;
+.header-fixed{
+ position:sticky;
+ top:0;
+ text-align:center;
+ padding:14px 0 8px 0;
+ background:rgba(10,15,26,0.95);
+ border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
-.nav-top{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:8px;
-    margin-bottom:15px;
+.main-title{
+ margin:0;
+ font-size:22px;
+ font-weight:800;
+ letter-spacing:2px;
+ color:var(--accent-strong);
+ text-transform:uppercase;
 }
 
-.button{
-    background:#000;
-    color:#ffd700;
-    border:2px solid #ffd700;
-    padding:8px 14px;
-    border-radius:20px;
-    cursor:pointer;
-    font-size:14px;
+.version-tag{
+ font-size:10px;
+ opacity:0.5;
+ margin-top:4px;
 }
 
-.card{
-    background:#111;
-    border-radius:15px;
-    padding:25px 20px 40px 20px;
-    margin:10px;
-    min-height:220px;
-    position:relative;
-    cursor:pointer;
-    font-size:16px;
-    line-height:1.4;
+.content-wrapper{
+ max-width:390px;
+ margin:0 auto;
+ padding:10px;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+}
+
+.button-grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:8px;
+ width:100%;
+ margin-bottom:10px;
+}
+
+.menu-btn{
+ background:var(--card-bg);
+ border:1px solid rgba(255,255,255,0.08);
+ color:var(--accent);
+ padding:10px 5px;
+ border-radius:28px;
+ font-size:12px;
+ font-weight:bold;
+ text-transform:uppercase;
+ cursor:pointer;
+}
+
+.info-card{
+ width:100%;
+ min-height:200px;
+ background:var(--card-bg);
+ border:1px solid var(--accent);
+ border-radius:var(--radius);
+ padding:16px 14px 30px 14px;
+ margin-bottom:12px;
+ text-align:center;
+ position:relative;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ cursor:pointer;
+}
+
+.rubrik-label{
+ position:absolute;
+ top:10px;
+ left:14px;
+ font-size:10px;
+ color:var(--accent);
+ font-weight:bold;
+}
+
+.card-counter{
+ position:absolute;
+ top:10px;
+ right:14px;
+ font-size:10px;
+ color:var(--accent);
 }
 
 .card-title{
-    font-size:18px;
-    font-weight:bold;
-    color:#ffd700;
-    margin-bottom:10px;
+ font-size:16px;
+ font-weight:700;
+ color:var(--accent-strong);
+ margin-bottom:10px;
 }
 
-.card-hint{
-    position:absolute;
-    bottom:10px;
-    width:100%;
-    text-align:center;
-    font-size:12px;
-    color:#aaa;
+.card-text{
+ font-size:14px;
+ line-height:1.6;
 }
 
-.nav-bottom{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin:15px 0;
+.hint{
+ position:absolute;
+ bottom:8px;
+ left:0;
+ right:0;
+ font-size:9px;
+ opacity:0.5;
+ color:var(--accent);
 }
 
-.nav-bottom button{
-    background:#000;
-    color:#ffd700;
-    border:2px solid #ffd700;
-    padding:8px 16px;
-    border-radius:20px;
-    cursor:pointer;
+.special-buttons{
+ width:100%;
+ display:flex;
+ gap:8px;
+ margin-bottom:12px;
 }
 
-.extra-buttons{
-    display:flex;
-    gap:10px;
-    margin:15px 10px;
+.special-buttons .menu-btn{
+ flex:1;
+ padding:12px 0;
+ font-size:13px;
 }
 
-.extra-buttons .button{
-    flex:1;
-    text-align:center;
+.nav-controls{
+ display:flex;
+ gap:8px;
+ width:100%;
+ margin-bottom:10px;
 }
 
-.video{
-    text-align:center;
-    margin-top:10px;
+.nav-btn{
+ flex:1;
+ padding:10px 0;
+ background:var(--card-bg);
+ border:1px solid var(--accent);
+ color:var(--accent);
+ border-radius:25px;
+ font-size:12px;
+ font-weight:bold;
+ text-transform:uppercase;
+ cursor:pointer;
 }
 
-.video a{
-    color:#ffd700;
-    text-decoration:none;
-    font-size:14px;
+.yt-button{
+ width:100%;
+ padding:10px 0;
+ background:#cc0000;
+ border-radius:25px;
+ text-align:center;
+ color:white;
+ text-decoration:none;
+ font-size:12px;
+ margin-bottom:8px;
 }
 
 footer{
-    text-align:center;
-    font-size:12px;
-    color:#666;
-    margin:15px 0 10px 0;
+ text-align:center;
+ font-size:10px;
+ opacity:0.6;
+ padding:10px;
+}
+
+.footer-brand{
+ display:block;
+ color:var(--accent);
+ font-weight:bold;
+ margin-bottom:4px;
 }
 </style>
 </head>
 
 <body>
 
-<header>Weltordnung im Wandel</header>
-
-<div class="nav-top">
-<button class="button" onclick="setCategory('Zyklus')">ZYKLUS</button>
-<button class="button" onclick="setCategory('Faktoren')">FAKTOREN</button>
-<button class="button" onclick="setCategory('Geld')">GELD</button>
-<button class="button" onclick="setCategory('Konflikt')">KONFLIKT</button>
-<button class="button" onclick="setCategory('USA')">USA</button>
-<button class="button" onclick="setCategory('China')">CHINA</button>
-<button class="button" onclick="setCategory('Europa')">EUROPA</button>
-<button class="button" onclick="setCategory('Strategie')">STRATEGIE</button>
+<div class="header-fixed">
+<p class="main-title">Weltordnung im Wandel</p>
+<p class="version-tag">VERSION 2.3.11</p>
 </div>
 
-<div class="card" onclick="nextCard()">
-<div class="card-title" id="cardTitle"></div>
-<div id="cardContent"></div>
-<div class="card-hint">Tippe für nächste Karte</div>
+<div class="content-wrapper">
+
+<div class="button-grid">
+<button class="menu-btn" onclick="openTopic(0)">Zyklus</button>
+<button class="menu-btn" onclick="openTopic(1)">Faktoren</button>
+<button class="menu-btn" onclick="openTopic(2)">Geld</button>
+<button class="menu-btn" onclick="openTopic(3)">Konflikt</button>
+<button class="menu-btn" onclick="openTopic(4)">USA</button>
+<button class="menu-btn" onclick="openTopic(5)">China</button>
+<button class="menu-btn" onclick="openTopic(6)">Europa</button>
+<button class="menu-btn" onclick="openTopic(7)">Strategie</button>
 </div>
 
-<div class="nav-bottom">
-<button onclick="prevCard()">Zurück</button>
-<button onclick="speakCard()">Vorlesen</button>
-<button onclick="nextCard()">Weiter</button>
+<div class="info-card" onclick="nextCardAndSpeak()">
+<div class="rubrik-label" id="rubrik-label"></div>
+<div class="card-counter" id="card-counter"></div>
+<div class="card-title" id="card-title"></div>
+<div class="card-text" id="overlay-content"></div>
+<div class="hint">Tippen für nächste Karte</div>
 </div>
 
-<div class="extra-buttons">
-<button class="button" onclick="setCategory('Start')">START</button>
-<button class="button" onclick="setCategory('Redalio')">RAY DALIO</button>
+<div class="special-buttons">
+<button class="menu-btn" onclick="openStartCards()">Start</button>
+<button class="menu-btn" onclick="openAuthorCard()">Ray Dalio</button>
 </div>
 
-<div class="video">
-<a href="https://www.youtube.com/watch?v=xguam0TKMw8" target="_blank">
-Videoanalyse starten
+<div class="nav-controls">
+<button class="nav-btn" onclick="prevCard()">Zurück</button>
+<button class="nav-btn" onclick="speakCurrentCard()">Vorlesen</button>
+<button class="nav-btn" onclick="nextCardAndSpeak()">Weiter</button>
+</div>
+
+<a href="https://www.youtube.com/watch?v=xguam0TKMw8" target="_blank" class="yt-button">
+🎬 VIDEO ANALYSE STARTEN
 </a>
+
 </div>
 
-<footer>Version 2.4.1</footer>
+<footer>
+<span class="footer-brand">Ray Dalio Masterclass</span>
+© 2025 Lern-App
+</footer>
 
 <script>
-let category="Start";
-let index=0;
-let speech=window.speechSynthesis;
+const topics=[
+{name:"Zyklus",cards:[
+["Zyklus 1","Große Imperien durchlaufen Aufstieg und Fall."],
+["Zyklus 2","Neue Ordnung entsteht nach Konflikten."],
+["Zyklus 3","Innovation treibt Wachstum."],
+["Zyklus 4","Reservewährung schafft Dominanz."],
+["Zyklus 5","Schulden leiten Wendepunkt ein."],
+["Zyklus 6","Interne Spannungen nehmen zu."],
+["Zyklus 7","Neue Macht steigt auf."]
+]},
+{name:"Faktoren",cards:[
+["Faktor 1","Bildung stärkt Wettbewerbsfähigkeit."],
+["Faktor 2","Innovation entscheidet über Führung."],
+["Faktor 3","Produktivität treibt Wohlstand."],
+["Faktor 4","Militär sichert Interessen."],
+["Faktor 5","Handel schafft Vernetzung."],
+["Faktor 6","Stabile Institutionen schützen Systeme."],
+["Faktor 7","Währungsstärke erzeugt Vertrauen."]
+]},
+{name:"Geld",cards:[
+["Geld 1","Kurzfristige Kreditzyklen beeinflussen Märkte."],
+["Geld 2","Langfristige Schuldenzyklen dauern Jahrzehnte."],
+["Geld 3","Inflation entwertet Vermögen."],
+["Geld 4","Zinsen steuern Kapitalflüsse."],
+["Geld 5","Gelddrucken verschiebt Risiken."],
+["Geld 6","Sachwerte schützen vor Inflation."],
+["Geld 7","Reservewährungen sichern Macht."]
+]},
+{name:"Konflikt",cards:[
+["Konflikt 1","Ungleichheit führt zu Spannungen."],
+["Konflikt 2","Populismus steigt bei Unsicherheit."],
+["Konflikt 3","Handelskriege verschärfen Rivalität."],
+["Konflikt 4","Technologie wird Machtinstrument."],
+["Konflikt 5","Militärische Abschreckung wächst."],
+["Konflikt 6","Systemwettbewerb verschärft sich."],
+["Konflikt 7","Multipolare Welt entsteht."]
+]},
+{name:"USA",cards:[
+["USA 1","Dollar ist Leitwährung."],
+["USA 2","Starke Kapitalmärkte."],
+["USA 3","Technologische Führung."],
+["USA 4","Hohe Staatsverschuldung."],
+["USA 5","Militärische Dominanz."],
+["USA 6","Politische Polarisierung."],
+["USA 7","Globale Allianzen sichern Einfluss."]
+]},
+{name:"China",cards:[
+["China 1","Rasanter Wirtschaftsaufstieg."],
+["China 2","Industriezentrum der Welt."],
+["China 3","Technologischer Ausbau."],
+["China 4","Staatskapitalismus."],
+["China 5","Schulden im Immobiliensektor."],
+["China 6","Neue Seidenstraße."],
+["China 7","Militärmodernisierung."]
+]},
+{name:"Europa",cards:[
+["Europa 1","Binnenmarkt stärkt Wirtschaft."],
+["Europa 2","Demografische Herausforderung."],
+["Europa 3","Exportorientierung."],
+["Europa 4","Energie-Transformation."],
+["Europa 5","Starke Regulierung."],
+["Europa 6","Sozialstaatliche Stabilität."],
+["Europa 7","Strategische Autonomie."]
+]},
+{name:"Strategie",cards:[
+["Strategie 1","Diversifikation ist zentral."],
+["Strategie 2","Sachwerte langfristig halten."],
+["Strategie 3","Liquidität sichern."],
+["Strategie 4","Makro-Zyklen verstehen."],
+["Strategie 5","Risiken balancieren."],
+["Strategie 6","Regionale Balance beachten."],
+["Strategie 7","Langfristig denken."]
+]}
+];
 
-const data={
-Start:[
-{title:"Große Zyklen",content:"Imperien durchlaufen Aufstieg, Höhepunkt und Niedergang."},
-{title:"Macht & Schulden",content:"Hohe Schulden schwächen langfristig Staaten."},
-{title:"Innere Konflikte",content:"Ungleichheit erzeugt gesellschaftliche Spannungen."},
-{title:"Externe Konflikte",content:"Rivalitäten zwischen Großmächten verstärken Krisen."},
-{title:"Währungswechsel",content:"Reservewährungen wechseln historisch."},
-{title:"Anpassung",content:"Strategische Diversifikation erhöht Stabilität."}
-],
-Zyklus:[
-{title:"Aufstieg",content:"Innovation und Bildung treiben Aufstieg."},
-{title:"Expansion",content:"Wirtschaft wächst stark."},
-{title:"Blüte",content:"Stabile Institutionen sichern Wohlstand."},
-{title:"Verschuldung",content:"Schulden steigen."},
-{title:"Spaltung",content:"Reiche und Arme driften auseinander."},
-{title:"Niedergang",content:"Neue Macht steigt auf."}
-],
-Faktoren:[
-{title:"Bildung",content:"Humankapital ist entscheidend."},
-{title:"Innovation",content:"Technologieführerschaft bringt Vorteile."},
-{title:"Militär",content:"Stärke sichert Einfluss."},
-{title:"Währung",content:"Reservewährung bringt Macht."},
-{title:"Produktivität",content:"Effizienz bestimmt Wachstum."},
-{title:"Stabilität",content:"Politische Einheit ist Schlüssel."}
-],
-Geld:[
-{title:"Kreditzyklen",content:"Kurz- und Langfristzyklen beeinflussen Märkte."},
-{title:"Inflation",content:"Geldentwertung schwächt Kaufkraft."},
-{title:"Zinsen",content:"Zinsniveau steuert Investitionen."},
-{title:"Druckerpresse",content:"Gelddrucken kann Krisen verschärfen."},
-{title:"Vermögenswerte",content:"Sachwerte schützen langfristig."},
-{title:"Reservewährung",content:"Dollar dominiert aktuell."}
-],
-Konflikt:[
-{title:"Interne Spannungen",content:"Soziale Ungleichheit."},
-{title:"Externe Rivalität",content:"USA vs China."},
-{title:"Technologiekrieg",content:"KI und Chips."},
-{title:"Handelskrieg",content:"Zölle und Sanktionen."},
-{title:"Militärisch",content:"Abschreckung und Bündnisse."},
-{title:"Systemwettbewerb",content:"Demokratie vs Autoritarismus."}
-],
-USA:[
-{title:"Dollar",content:"Weltreservewährung."},
-{title:"Verschuldung",content:"Hoher Schuldenstand."},
-{title:"Innovation",content:"Technologieführend."},
-{title:"Militärmacht",content:"Stärkstes Militär."},
-{title:"Spaltung",content:"Politische Polarisierung."},
-{title:"Kapitalmärkte",content:"Tiefe Finanzmärkte."}
-],
-China:[
-{title:"Aufstieg",content:"Rasanter wirtschaftlicher Aufstieg."},
-{title:"Industrie",content:"Produktionszentrum."},
-{title:"Technologie",content:"KI und 5G Ausbau."},
-{title:"Staatliche Kontrolle",content:"Zentral gesteuertes System."},
-{title:"Schulden",content:"Immobiliensektor belastet."},
-{title:"Geopolitik",content:"Neue Seidenstraße."}
-],
-Europa:[
-{title:"EU",content:"Gemeinsamer Markt."},
-{title:"Demografie",content:"Alternde Bevölkerung."},
-{title:"Industrie",content:"Exportorientiert."},
-{title:"Energie",content:"Abhängigkeiten reduziert."},
-{title:"Regulierung",content:"Starke Marktregeln."},
-{title:"Stabilität",content:"Sozialstaat."}
-],
-Strategie:[
-{title:"Diversifikation",content:"Risiken streuen."},
-{title:"Sachwerte",content:"Gold & Aktien."},
-{title:"Liquidität",content:"Flexibel bleiben."},
-{title:"Global denken",content:"Regionen vergleichen."},
-{title:"Zyklen verstehen",content:"Langfristige Muster erkennen."},
-{title:"Anpassungsfähigkeit",content:"Schnell reagieren."}
-],
-Redalio:[
-{title:"Prinzipien",content:"Transparenz und Radikale Ehrlichkeit."},
-{title:"Schuldenzyklus",content:"Langfristiger Kreditzyklus."},
-{title:"Machtverschiebung",content:"Imperien im Vergleich."},
-{title:"Diversifikation",content:"All Weather Strategie."},
-{title:"Risiko",content:"Drawdowns vermeiden."},
-{title:"Makrodenken",content:"Große Muster erkennen."}
-]
-};
+const startCards=[
+["Start 1","Willkommen zur Weltordnung Lern-App."],
+["Start 2","Nutze die Rubriken zur Navigation."],
+["Start 3","Tippe auf Karte für nächste."],
+["Start 4","Weiter liest automatisch vor."],
+["Start 5","Ziel ist Makro-Verständnis."],
+["Start 6","Zyklen erkennen."],
+["Start 7","Strategisch handeln."]
+];
 
-function showCard(){
-let card=data[category][index];
-document.getElementById("cardTitle").innerText=card.title;
-document.getElementById("cardContent").innerText=card.content;
+const authorCards=[
+["Ray Dalio 1","Gründer von Bridgewater."],
+["Ray Dalio 2","Entwickler des All Weather Portfolios."],
+["Ray Dalio 3","Experte für Schuldenzyklen."],
+["Ray Dalio 4","Analysiert Imperien historisch."],
+["Ray Dalio 5","Betont Diversifikation."],
+["Ray Dalio 6","Radikale Transparenz."],
+["Ray Dalio 7","Makro-Denker."]
+];
+
+let currentCards=startCards;
+let currentCard=0;
+
+function updateCard(){
+let card=currentCards[currentCard];
+document.getElementById("card-title").innerText=card[0];
+document.getElementById("overlay-content").innerText=card[1];
+document.getElementById("card-counter").innerText=(currentCard+1)+"/"+currentCards.length;
 }
 
-function nextCard(){
-index++;
-if(index>=data[category].length){index=0;}
-showCard();
-speakCard();
+function speakCurrentCard(){
+window.speechSynthesis.cancel();
+let msg=new SpeechSynthesisUtterance(document.getElementById("overlay-content").innerText);
+msg.lang="de-DE";
+window.speechSynthesis.speak(msg);
+}
+
+function nextCardAndSpeak(){
+currentCard=(currentCard+1)%currentCards.length;
+updateCard();
+speakCurrentCard();
 }
 
 function prevCard(){
-index--;
-if(index<0){index=data[category].length-1;}
-showCard();
-speakCard();
+currentCard=(currentCard-1+currentCards.length)%currentCards.length;
+updateCard();
+speakCurrentCard();
 }
 
-function speakCard(){
-speech.cancel();
-let text=data[category][index].title+". "+data[category][index].content;
-let utter=new SpeechSynthesisUtterance(text);
-utter.lang="de-DE";
-speech.speak(utter);
+function openTopic(index){
+currentCards=topics[index].cards;
+currentCard=0;
+updateCard();
+speakCurrentCard();
 }
 
-function setCategory(cat){
-category=cat;
-index=0;
-showCard();
-speakCard();
+function openStartCards(){
+currentCards=startCards;
+currentCard=0;
+updateCard();
+speakCurrentCard();
+}
+
+function openAuthorCard(){
+currentCards=authorCards;
+currentCard=0;
+updateCard();
+speakCurrentCard();
 }
 
 window.onload=function(){
-showCard();
-speakCard();
-};
+updateCard();
+speakCurrentCard();
+}
 </script>
 
 </body>
